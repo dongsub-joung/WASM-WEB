@@ -1,104 +1,13 @@
-<!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="./styles.css">
-    <style>
-        /* Center the image */
-        .centered-image {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-          background-color: #f0f0f0; /* Background color */
-        }
-    
-        /* Container for the image */
-        .image-container {
-          position: relative;
-          display: inline-block;
-        }
-    
-        /* Style for the radiant effect */
-        .radiant-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
-          pointer-events: none; /* Allows clicks to go through the overlay */
-          border-radius: 50%; /* Optional: adds a circular shape */
-        }
-    
-        /* Style for the image */
-        .image {
-          display: block;
-          max-width: 100%;
-          height: auto;
-          border-radius: 50%; /* Optional: makes the image circular */
-        }
-      </style>
-    <title>Image Viewer using WASM in Rust</title>
+  <meta charset="UTF-8">
+  <title>Add Image using WASM and Rust</title>
 </head>
 <body>
-    <h1>Image Viewer using WASM in Rust</h1>
-    <div class="kind_wrap">
-        <div class="kind_slider">
-    <div class="centered-image">
-        <div class="radiant-border">
-        <ul class="slider">
-            <li><img id="image" src="./image/1.png" alt="Selected Image" alt="Centered Image"></li>
-            <li><img id="image" src="./image/1.png" alt="Selected Image" alt="Centered Image"></li>
-            <li><img id="image" src="./image/1.png" alt="Selected Image" alt="Centered Image"></li>
-            <li><img id="image" src="./image/1.png" alt="Selected Image" alt="Centered Image"></li>
-            <li><img id="image" src="./image/2.png" alt="Selected Image" alt="Centered Image"></li>
-            <li><img id="image" src="./image/3.png" alt="Selected Image" alt="Centered Image"></li>
-            <li><img id="image" src="./image/4.png" alt="Selected Image" alt="Centered Image"></li>
-        </ul>
-        </div>
-    </div>
-</div>
+  <!-- Your content -->
 
-        <div class="arrow">
-            <a href="" class="prev">pre</a>
-            <a href="" class="next">next</a>
-        </div>
-    </div>
-
-    <script type="module">
-        import init, { decode_image_from_buffer, get_image_buffer_length } from './WASM_WEB.js';
-
-        async function run() {
-            await init(); // Initialize the WASM module
-
-            const fileInput = document.getElementById('fileInput');
-            const imageElement = document.getElementById('image');
-
-            fileInput.addEventListener('change', async function (event) {
-                const file = event.target.files[0];
-
-                // Read the selected file as a buffer
-                const buffer = await file.arrayBuffer();
-
-                // Call Rust function to decode the image
-                const imgBufferPtr = decode_image_from_buffer(new Uint8Array(buffer), buffer.byteLength);
-
-                // Determine the length of the image buffer (if needed)
-                const imgBufferLength = get_image_buffer_length();
-
-                // Convert the Rust pointer to a JavaScript Uint8Array
-                const imgBuffer = new Uint8Array(Module.memory.buffer, imgBufferPtr, imgBufferLength);
-
-                // Create a Blob from the buffer and set the image source
-                const blob = new Blob([imgBuffer], { type: 'image/Png' });
-                const imageUrl = URL.createObjectURL(blob);
-                imageElement.src = imageUrl;
-            });
-        }
-
-        run();
-    </script>
-    <script src="./script.js"></script>
+  <script type="module" src="./script.js"></script>
+  <script type="module" src="./index.js"></script>
 </body>
 </html>
