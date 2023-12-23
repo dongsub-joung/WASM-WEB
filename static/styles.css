@@ -1,0 +1,16 @@
+/* Add your CSS styles here */
+#Btn {
+    font-size: 24px;
+    padding: 20px 40px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #Btn:hover {
+    background-color: #2980b9;
+  }
+  
