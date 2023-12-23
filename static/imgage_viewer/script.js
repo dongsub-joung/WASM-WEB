@@ -12,6 +12,12 @@ async function run() {
         add_image('./image/2.png', 'Dynamic Image');
         add_image('./image/3.png', 'Dynamic Image');
         add_image('./image/4.png', 'Dynamic Image');
+        add_image('./image/5.png', 'Dynamic Image');
+        add_image('./image/6.png', 'Dynamic Image');
+        add_image('./image/7.png', 'Dynamic Image');
+        add_image('./image/8.png', 'Dynamic Image');
+        add_image('./image/9.png', 'Dynamic Image');
+        add_image('./image/10.png', 'Dynamic Image');
     } catch (error) {
         console.error('Error adding image:', error);
     }
